@@ -67,7 +67,7 @@ function doSomething(orderNum){
   })
 }
 ```
-_REMINDER: A promise-based function will always return a `new Promise`.
+_REMINDER: A promise-based function will always return a `new Promise`._
 
 1. Write a promise for each step in your flow:
    1. Take order - synchronous/blocking; do not use a setTimeout()
