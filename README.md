@@ -122,7 +122,7 @@ takeOrder()
   })
 ```
 5. Improve your code by using async/await - Which we'll learn about in Week 15
-6. Follow the instructions below for _Submitting Your Code via GitHub_.
+6. Follow the instructions below for [Submitting Your Code via GitHub](#submitting-your-code-via-github).
 
 Upon submittal, the instructor will do the following: 
 - Review your code and make any comments on your pull request
