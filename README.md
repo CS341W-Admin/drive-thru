@@ -129,11 +129,10 @@ Upon submittal, the instructor will do the following:
 - Merge the accepted code into the "main" branch of the remote repo on GitHub
 - Close the pull request 
 
-### Additional Advice
+### Additional Advice / ChatGPT
 You have a great deal of flexibility with how you fulfill the requirements of this assignment. Your instructor will provide guidance along the way, and you can and should use the Slack channel for Q&A. 
 
-### ChatGPT
-You are permitted to use ChatGPT to help complete this assignment. However, if you use this AI tool, then you must also submit a 250-word essay — in your own words — to describe how you used it, what the results were, and whether you found it helpful to your learning experience.
+You are permitted to use ChatGPT to help complete this assignment. However, if you use this AI tool, then you must also submit a 250-word essay — **in your own words** — to describe how you used it, what the results were, and whether you found it helpful to your learning experience.
 
 ## Getting Started — 1x Repo Configuration
 
@@ -160,18 +159,18 @@ You are permitted to use ChatGPT to help complete this assignment. However, if y
     *NOTE: Be certain to replace this — `[assignment repo URL]` — with your actual GitHub repo URL for this assignment, and **do not forget the trailing space and period**, which tells Git to use the current folder. For example:* 
     > `git clone --single-branch --branch main https://github.com/CS122J/drive-thru-John-Doe .`
 
-5. Create a new branch called "dev-promises" and perform a check-out with the following one-line command:
+5. Create a new branch called "dev-drivethru" and perform a check-out with the following one-line command:
     ```
-    git checkout -b dev-promises
+    git checkout -b dev-drivethru
     ```
-**Conclusion:** You are now ready to work in the "dev-promises" branch of your local repository. When you have finished making code changes and are ready to submit this assignment, then proceed to *Submitting Your Code via GitHub* below.
+**Conclusion:** You are now ready to work in the "dev-drivethru" branch of your local repository. When you have finished making code changes and are ready to submit this assignment, then proceed to *Submitting Your Code via GitHub* below.
 
 ## Submitting Your Code via GitHub
 
-1. Confirm that you're on the "dev-promises" branch. If you're not sure, then use the following commands to a) see what branch you're on, and b) switch to "dev-promises": 
+1. Confirm that you're on the "dev-drivethru" branch. If you're not sure, then use the following commands to a) see what branch you're on, and b) switch to "dev-drivethru": 
     ```
     git branch
-    git checkout dev-promises
+    git checkout dev-drivethru
     ```
 2. Make sure any new files have been added to the local repo. Use `git add`... to add files/folders selectively, or use the global command (trailing dot):
    ```
@@ -183,11 +182,11 @@ You are permitted to use ChatGPT to help complete this assignment. However, if y
    ```
     *NOTE: Remember to replace this `[your custom message]` with your own message, such as, "Adding new code for drive-thru."*
 
-4. Push your code to the "dev-promises" branch on the remote GitHub repository.
+4. Push your code to the "dev-drivethru" branch on the remote GitHub repository.
 
-    *NOTE: If this is a first-time push, this action results in creation of the branch at the remote repo (GitHub) level; otherwise, this updates the existing "dev-promises" branch on the remote repo.*
+    *NOTE: If this is a first-time push, this action results in creation of the branch at the remote repo (GitHub) level; otherwise, this updates the existing "dev-drivethru" branch on the remote repo.*
     ```
-    git push origin dev-promises
+    git push origin dev-drivethru
     ```
 5. Log in at [https://github.com](https://github.com) and access this repo. 
 
@@ -197,7 +196,7 @@ You are permitted to use ChatGPT to help complete this assignment. However, if y
     - Click the "Pull requests" top menu link. *The Pull Requests panel appears.* 
     - Click the "New pull request" button. *The Compare Changes panel appears.*
     - Click the "compare" drop down-menu button. *A list of active branches appears.*
-    - Click the "dev-promises" branch name. *GitHub automatically evaluates the selected branch against the main branch for any conflicts. If there are no conflicts, then a green "able to merge" message is displayed.*
+    - Click the "dev-drivethru" branch name. *GitHub automatically evaluates the selected branch against the main branch for any conflicts. If there are no conflicts, then a green "able to merge" message is displayed.*
     - Click the "Create pull request" button. *The "Open a pull request" input panel appears.*
 7. Perform the following steps to finalize and submit your pull request:
     - Type a brief 1-line description for the request, such as, "Submitting code for drive-thru."
