@@ -129,11 +129,11 @@ Upon submittal, the instructor will do the following:
 - Merge the accepted code into the "main" branch of the remote repo on GitHub
 - Close the pull request 
 
-## Additional Advice
+### Additional Advice
 You have a great deal of flexibility with how you fulfill the requirements of this assignment. Your instructor will provide guidance along the way, and you can and should use the Slack channel for Q&A. 
 
 ### ChatGPT
-You are permitted to use ChatGPT to help complete this assignment. However, if you use this AI tool, then you must also submit an essay of at least 250 words to describe how you used it, what the results were, and whether you found it helpful to your learning experience.
+You are permitted to use ChatGPT to help complete this assignment. However, if you use this AI tool, then you must also submit a 250-word essay — in your own words — to describe how you used it, what the results were, and whether you found it helpful to your learning experience.
 
 ## Getting Started — 1x Repo Configuration
 
