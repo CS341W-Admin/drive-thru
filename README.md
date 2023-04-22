@@ -43,7 +43,7 @@ A successful order will have the following sequence:
    4. Current amount in the cash drawer
 
 ### 2. Payment System
-1. The cost of each sandwich will be stored in a pricing table, represented by a JS object. _NOTE: You can optionally store the price in the same object as the ingredients._ 
+1. The cost of each sandwich will be stored in a pricing table, represented by a JS object. 
 2. Your program will dynamically consult the pricing table when determining how much money to require for payment. 
 3. Payment status can be tracked as a property on the current order object, e.g., a simple Boolean `payment:true|false`.
 4. If an order is rejected, then 
