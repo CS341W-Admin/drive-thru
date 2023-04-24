@@ -3,11 +3,12 @@
 The owners of the McCluckel's Chicken Sandwich Shop want to offer drive-thru window service. They've hired you to develop a workflow system that drives the process of taking an order, accepting payment, updating inventory, cooking the food, and serving the meal to the customer. Some parts of this solution have been built, but you need to supply missing elements and tie it all together in a working program. 
 
 ### Grading
-- _10% — Adherence to Git/GitHub procedures_, including dev branching and pull request submission
-- _10% — Setup of HTML page_, including proper boilerplate elements and linking of stylesheet and main JS file
-- _40% — JavaScript code_, including proper use of ES6 modules, event handling, promises, object handling, and scope management
-- _25% — Overall solution completeness and effectiveness_, as shown by meeting the requirements as outlined below
-- _15% — Creativity and innovation_, including your custom enhancements that improve the product beyond the requirements
+This project is worth 15 points, weighted as follows:
+- __10% — Adherence to Git/GitHub procedures__, including dev branching and pull request submission
+- __10% — Setup of HTML page__, including proper boilerplate elements and linking of stylesheet and main JS file
+- __40% — JavaScript code__, including proper use of ES6 modules, event handling, promises, object handling, and scope management
+- __25% — Overall solution completeness and effectiveness__, as shown by meeting the requirements outlined below
+- __15% — Creativity and innovation__, including your custom enhancements that improve the product beyond the requirements
 
 ### Getting Started
 Follow the instructions under [Getting Started](#getting-started--1x-repo-configuration) to clone this repository and set up a dev branch.
