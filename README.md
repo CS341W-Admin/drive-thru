@@ -1,6 +1,6 @@
 # 🐔 McCluckel's Drive-Thru
 ## Project Overview
-The owners of the McCluckel's Chicken Sandwich Shop want to offer drive-thru window service. They've hired you to develop a workflow system that automates the process of taking an order, sending an order to the kitchen and receiving a response, accepting payment, and serving the food to the customer. Some parts of this solution have been built, but you need to supply missing elements and tie it all together in a working program. 
+The owners of the McCluckel's Chicken Sandwich Shop want to offer drive-thru window service. They've hired you to develop a workflow system that automates the process of taking an order, accepting payment, updating inventory, cooking the food, and serving the meal to the customer. Some parts of this solution have been built, but you need to supply missing elements and tie it all together in a working program. 
 
 ### Getting Started
 Follow the instructions under [Getting Started](#getting-started--1x-repo-configuration) to clone this repository and set up a dev branch.
@@ -8,26 +8,30 @@ Follow the instructions under [Getting Started](#getting-started--1x-repo-config
 ## Business Requirements
 ### 1. User Interface
 1. Orders will be submitted via browser, using a simple HTML form.
-2. Customers will see the results of processing on the screen for the following:
-   1. Order details: customer name, order number, time of order, sandwich type(s), quantity for each, and total price)
-   2. Current status of order
+2. Customers will see real-time feedback for the following:
+   1. Order details: customer name, order number, time of order, sandwich type(s), quantity for each
+   2. Current workflow status (e.g., prepping, cooking).
 3. Customers will "pay" for their orders through the browser interface, typing the amount and clicking a "Pay" button. 
-4. Upon completion of the transaction, the customer will receive an appropriate message (e.g., "Thank you," "Sorry we could not complete your order,").
+   1. Failure to pay an adequate amount will result in order failure (see below).
+4. Upon completion of the transaction, the customer will receive an appropriate message
+   1. Success: Thank you notice with presentation of food (i.e., images of the food) 
+   2. Failure: "Sorry" notice (e.g., "Sorry! We could not complete your order").
 
 ### 2. Payment System
 1. Full payment must be received from the customer prior to submitting the order to the kitchen. 
-2. Overpayments will be used as tips, whereas underpayment will result in a canceled order and a refund.
-3. If a payment is successful but the order cannot be fulfilled, then this will result in a canceled order and a refund.
-4. All successful orders/payments are accumulated in the "cash drawer." Accumulate the exact full amount of the purchase only.
-5. McCluckels does not give change. Any overpayments go to employees immediately and are not tracked. 
+2. Underpayment will result in a canceled order and a refund.
+3. Overpayments get tracked as tips for employees. McCluckels does not give change. 
+3. If a payment is successful but the order cannot be fulfilled for any reason, then the order will be canceled. The funds __do not__ get counted as receipts.
+4. All successful orders/payments will be accumulated (session totals) in the receipts for the given product (e.g., regular, spicy, deluxe). 
+   1. Accumulate the exact full amount of the purchases only, not overpayments. (Reminder: Overpayments go as tips to employees.)
 
 ### 3. Process Steps
 A successful order will have the following sequence:
 1. Take order
 2. Accept payment
-3. Submit order to kitchen and receive food
-4. Serve meal
-5. Thank customer
+3. Update inventory _Note: This is tracked at a product name level, not at element level (e.g., buns, patties)_
+4. Submit order to kitchen and receive food
+5. Serve meal and thank customer
 
 ## Technical Requirements
 ### 1. User Interface
@@ -35,21 +39,20 @@ A successful order will have the following sequence:
 2. Use an HTML form to gather payment amount (input field) along with a "pay" button. 
 3. Use an event handler on each button: 
    1. Suppress the default form submit button behavior.
-   2. Gather the field values into an object or objects representing the current order.
-4. Provide `<div>` tags with unique id attributes for you to target with innerHTML or textContent. 
-   1. Greetings
+4. Gather the order form's field values into the `orderDetails` object.
+5. Provide `<div>` tags with unique id attributes for you to target with innerHTML or textContent. 
+   1. Messages
    2. Order status
-   3. Amount due
-   4. Current amount in the cash drawer
+   3. Order history
+   4. Current sales totals (admin area in footer)
+   5. Inventory levels (sandwiches remaining)
 
 ### 2. Payment System
-1. The cost of each sandwich will be stored in a pricing table, represented by a JS object. 
+1. The cost of each sandwich is stored in a pricing table within the `accounts` JS object. 
 2. Your program will dynamically consult the pricing table when determining how much money to require for payment. 
-3. Payment status can be tracked as a property on the current order object, e.g., a simple Boolean `payment:true|false`.
-4. If an order is rejected, then 
-   1. Payment status reverts to `payment:false`.
-   2. Dollar amount is not added to the cash drawer amount.
-5. If an order is fulfilled and served, then the dollar amount is added to the cash drawer amount and displayed on the screen.
+3. If an order is __rejected__, then dollar amount __is not__ added to the "receipts" counter.
+4. If an order is __fulfilled__, then the dollar amount is added to "receipts" counter.
+5. The day's total receipts for each product shall be inconspicuously displayed somewhere in footer area.
 
 ### 3. Process Steps
 Promises will be central to your asynchronous program. Each step will exist as a unique "promise" object, for example:
@@ -58,9 +61,7 @@ Promises will be central to your asynchronous program. Each step will exist as a
 function doSomething(orderNum){
   return new Promise((resolve, reject) => {
     if(orderNum){
-      const msg = {
-        msg: `Processing order number ${orderNum}!`,
-      }
+      const msg = "Thanks for your order, please standby..."
       setTimeout(() => {
         resolve(msg)
       }, 3000)
@@ -73,34 +74,27 @@ function doSomething(orderNum){
 _REMINDER: A promise-based function will always return a `new Promise`._
 
 1. Write a promise for each step in your flow:
-   1. Take order - synchronous/blocking; do not use a setTimeout()
-   2. Accept payment - asynchronous/blocking; use a setTimeout() delay between 2-5 seconds
-   3. Submit order to kitchen and receive food - asynchronous/blocking; use `fetch` API (see below)
-   4. Serve meal - synchronous/blocking, use a setTimeout() delay between 2-5 seconds
-   5. Thank customer - synchronous/blocking code (this could be done without a promise)
-2. Use the `fetch` API to submit your order to the kitchen. Your request will go to the URL as shown below:  
+   1. Take order
+   2. Accept payment
+   3. Update inventory _Note: This is tracked at a product name level, not at element level (e.g., buns, patties)_
+   4. Submit order to kitchen and receive food
+   5. Serve meal and thank customer
+2. Use the `fetch` API to submit your order to the kitchen. Your request will go to an external URL as shown below:  
 ```
-function kitchenCall(order){
-    return new Promise((resolve, reject) => {
-      fetch("https://yylsnf-8080.csb.app/prepare_meal", {
-        method: "POST",
-        body: JSON.stringify(order),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((data) => data.json())
-        .then((data) => {
-          data.status === 1 ? resolve(data) : reject(data)
-        })
-        .catch((err) =>
-          reject({
-            msg: `FAILED TO MAKE YOUR MEAL! ${err}`,
-            status: 2,
-          })
-        )
+    fetch("https://1ouruk-8080.csb.app/prepare_meal", {
+      method: "POST",
+      body: JSON.stringify(order),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
     })
-}
+      .then((data) => data.json()) //.json() is a promise
+      .then((data) => {
+        data.status === 1 ? resolve(data) : reject(data)
+      })
+      .catch((err) =>
+        reject("Failed to make your meal!")
+      )
 ```
 3. Fetch API response handling:
    1. A successful response from the kitchen will include the image URL(s) to display on your HTML page. 
@@ -112,16 +106,14 @@ takeOrder()
     getPayment(data)
   })
   .then((data) => {
-    kitchenCall(data)
+    updateInventory(data)
   })
-  .then((data) => {
-    serveMeal(data)
-  })
+  // And so on...
   .catch((err) => {
     document.querySelector("#orderStatus").textContent = err.msg
   })
 ```
-5. Improve your code by using async/await - Which we'll learn about in Week 15
+5. Improve your code by using async/await 
 6. Follow the instructions below for [Submitting Your Code via GitHub](#submitting-your-code-via-github).
 
 Upon submittal, the instructor will do the following: 
