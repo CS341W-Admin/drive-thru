@@ -2,7 +2,7 @@
 ## Project Overview
 The owners of the McCluckel's Chicken Sandwich Shop want to offer drive-thru window service. They've hired you to develop a workflow system that drives the process of taking an order, accepting payment, updating inventory, cooking the food, and serving the meal to the customer. Some parts of this solution have been built, but you need to supply missing elements and tie it all together in a working program. 
 
-### Grading
+### Project Scoring
 This project is worth 15 points, weighted as follows:
 - __10% — Adherence to Git/GitHub procedures__, including dev branching and pull request submission
 - __10% — Setup of HTML page__, including proper boilerplate elements and linking of stylesheet and main JS file
