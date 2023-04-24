@@ -23,7 +23,7 @@ Follow the instructions under [Getting Started](#getting-started--1x-repo-config
 3. Overpayments get tracked as tips for employees. McCluckels does not give change. 
 3. If a payment is successful but the order cannot be fulfilled for any reason, then the order will be canceled. The funds __do not__ get counted as receipts.
 4. All successful orders/payments will be accumulated (session totals) in the receipts for the given product (e.g., regular, spicy, deluxe). 
-   1. Accumulate the exact full amount of the purchases only, not overpayments. (Reminder: Overpayments go as tips to employees.)
+   1. Accumulate the exact amount of the purchases only. (Reminder: Overpayments go as tips to employees.)
 
 ### 3. Process Steps
 A successful order will have the following sequence:
@@ -40,22 +40,25 @@ A successful order will have the following sequence:
 3. Use an event handler on each button: 
    1. Suppress the default form submit button behavior.
 4. Gather the order form's field values into the `orderDetails` object.
-5. Provide `<div>` tags with unique id attributes for you to target with innerHTML or textContent. 
-   1. Messages
-   2. Order status
-   3. Order history
-   4. Current sales totals (admin area in footer)
-   5. Inventory levels (sandwiches remaining)
+5. Provide HTML tags with unique id attributes so that you can target them with CSS (e.g., hide/show) and target them with content (e.g., `innerHTML` or `textContent`. 
+   1. Messages — Where messages to the customer can be seen
+   2. Order status — Where the details of the current order are displayed
+   3. Order history — Where you can track orders that have been fulfilled
+   4. Current sales totals (admin area in footer) — Where you can see incoming receipts/revenue by sandwich type
+   5. Inventory levels (sandwiches remaining) — Where you can see how many sandwiches remain in inventory
 
 ### 2. Payment System
-1. The cost of each sandwich is stored in a pricing table within the `accounts` JS object. 
-2. Your program will dynamically consult the pricing table when determining how much money to require for payment. 
-3. If an order is __rejected__, then dollar amount __is not__ added to the "receipts" counter.
-4. If an order is __fulfilled__, then the dollar amount is added to "receipts" counter.
-5. The day's total receipts for each product shall be inconspicuously displayed somewhere in footer area.
+1. The price of each sandwich will be stored within the `accounts` JS object. 
+2. Your program will dynamically consult the `accounts` object when determining how much money to require for payment. 
+3. If an order is __fulfilled__, then the dollar amount is added to "receipts" counter.
+4. If an order is __rejected__, then dollar amount __is not__ added to the "receipts" counter. _NOTE: Any sandwich ordered beyond supply levels will be rejected._
+5. Use DOM handling techniques (e.g., `querySelector()`) to push to the footer your updated totals on sales figures by sandwich type. This will be the sum (dollar format with two decimals) of all orders taken for the day/session. For example,
+   1. Regular Chicken Sandwich: $120.00
+   2. Spicy Chicken Sandwich: $52.45
+   3. Deluxe Chicken Sandwich: $230.00
 
 ### 3. Process Steps
-Promises will be central to your asynchronous program. Each step will exist as a unique "promise" object, for example:
+_NOTE: Promises will be central to your asynchronous program. Each step will exist as a unique "promise" object, for example:_
 ```
 // Asynchronous promise event with 3 second timeout
 function doSomething(orderNum){
@@ -73,13 +76,15 @@ function doSomething(orderNum){
 ```
 _REMINDER: A promise-based function will always return a `new Promise`._
 
-1. Write a promise for each step in your flow:
+1. Make sure a Promise exists for each step in your flow:
    1. Take order
    2. Accept payment
-   3. Update inventory _Note: This is tracked at a product name level, not at element level (e.g., buns, patties)_
-   4. Submit order to kitchen and receive food
+   3. Update inventory — This is tracked at a product name level (e.g., "regular," "spicy"), not at an ingredient level (e.g., buns, patties)
+   4. Submit kitchen order and receive food — This will involve a `fetch()` call to an external API that returns the food [image URLs])
    5. Serve meal and thank customer
-2. Use the `fetch` API to submit your order to the kitchen. Your request will go to an external URL as shown below:  
+2. Give each promise a `setTimeout()` delay to simulate the time it takes to fulfill an order and to give the promise the quality of being an asynchronous event.
+   1. Exception: This is not required for the kitchen order promise, which already has a `fetch()` API call that is asynchronous.
+3. Use the `fetch` API to submit your order to the kitchen. Your request will go to an external URL as shown below:  
 ```
     fetch("https://1ouruk-8080.csb.app/prepare_meal", {
       method: "POST",
@@ -96,10 +101,10 @@ _REMINDER: A promise-based function will always return a `new Promise`._
         reject("Failed to make your meal!")
       )
 ```
-3. Fetch API response handling:
+4. Fetch API response handling:
    1. A successful response from the kitchen will include the image URL(s) to display on your HTML page. 
-   2. An unsuccessful response from the kitchen will be a status of 2 and a message to display to the customer.
-4. Link together your promises so that their execution relies on the success of the previous promise. Example:
+   2. An unsuccessful response from the kitchen will be a status of 2 and a failure message for display to the customer.
+5. Once all your promises are ready, then link them together so that their execution relies on the success of the previous promise. Example:
 ```
 takeOrder()
   .then((data) => {
@@ -108,13 +113,15 @@ takeOrder()
   .then((data) => {
     updateInventory(data)
   })
-  // And so on...
-  .catch((err) => {
-    document.querySelector("#orderStatus").textContent = err.msg
-  })
+  /* And so on...
+  ...with more promises. */
+   .catch((err) => {
+     catchHandler(err)
+   })
 ```
-5. Improve your code by using async/await 
-6. Follow the instructions below for [Submitting Your Code via GitHub](#submitting-your-code-via-github).
+6. At the end of your promise chain, include a `finally()` statement that calls the `resetUI()` function so that the system is ready to take the next order.
+7. Improve your code by using async/await. _NOTE: This will be discussed on Wednesday._ 
+8. Follow the instructions below for [Submitting Your Code via GitHub](#submitting-your-code-via-github).
 
 Upon submittal, the instructor will do the following: 
 - Review your code and make any comments on your pull request
@@ -126,7 +133,7 @@ You have a great deal of flexibility with how you fulfill the requirements of th
 
 You are permitted to use ChatGPT to help complete this assignment. However, if you use this AI tool, then you must also submit a 250-word essay — **in your own words** — to describe how you used it, what the results were, and whether you found it helpful to your learning experience.
 
-## Getting Started — 1x Repo Configuration
+## Getting Started — One-Time Repo Configuration
 
    *NOTE: To execute these steps, you can use the terminal window in VSCode, the standard terminal app (Mac) or command prompt (Windows), or a popular third-party terminal emulator (e.g., iTerm2 for Mac, PuTTy or PowerShell for Windows).*
 
