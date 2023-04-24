@@ -1,0 +1,58 @@
+<h1>🐔 McCluckel's</h1>
+<div id="custMsg" class="info">
+  <p>Click to start</p>
+</div>
+<div id="mainContent">
+  <div id="presentFood"></div>
+  <button id="startBtn">START</button>
+  <form name="payForm" id="payForm" class="hide">
+    <label for="$USD">USD $</label>
+    <input type="number" id="USD" name="quantity" min="0" step="0.01" />
+    <input type="submit" value="PAY" />
+  </form>
+  <form name="orderForm" id="orderForm" class="hide">
+    <label for="custName">Customer Name:</label>
+    <input name="custName" id="custName" required /><br /><br />
+    <select name="regular" id="regular">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <label for="regular">Regular Chicken &mdash; <em>$3.45</em></label>
+    <br /><br />
+    <select name="deluxe" id="deluxe">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <label for="deluxe">Deluxe Chicken Sandwich &mdash; <em>$6.45</em></label>
+    <br /><br />
+    <select name="spicy" id="spicy">
+      <option value="0">0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+    <label for="spicy">Spicy Chicken Sandwich &mdash; <em>$4.30</em></label>
+    <br /><br />
+    <input type="submit" value="SUBMIT" />
+  </form>
+  <div id="orderStatus" class="hide">
+    <h4>Current Order</h4>
+    <p class="results"></p>
+  </div>
+</div>
+<div id="footer">
+  <div id="orderHistory" class="hide">
+    <h4>Order History</h4>
+    <p class="results"></p>
+  </div>
+</div>
