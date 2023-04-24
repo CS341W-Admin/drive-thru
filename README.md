@@ -128,7 +128,7 @@ takeOrder()
    })
 ```
 6. At the end of your promise chain, include a `finally()` statement that calls the `resetUI()` function so that the system is ready to take the next order.
-7. Improve your code by using async/await. _NOTE: This will be discussed on Wednesday._ 
+7. Improve your code by replacing promise chaining with async/await features. _NOTE: This will be discussed on Wednesday._ 
 
 ### Submitting Your Code
 Follow the instructions below for [Submitting Your Code via GitHub](#submitting-your-code-via-github). Upon submittal, the instructor will do the following: 
