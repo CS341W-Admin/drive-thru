@@ -2,6 +2,15 @@
 ## Project Overview
 The owners of the McCluckel's Chicken Sandwich Shop want to offer drive-thru window service. They've hired you to develop a workflow system that drives the process of taking an order, accepting payment, updating inventory, cooking the food, and serving the meal to the customer. Some parts of this solution have been built, but you need to supply missing elements and tie it all together in a working program. 
 
+### Grading
+_5% — Adherence to Git/GitHub procedures_, including dev branching and pull request submission
+_5% — Setup of HTML page_, including proper boilerplate elements and linking of stylesheet and main JS file
+_5% — Management of scope_ through use of methods, namespaces, and ES6 modules (export/import)
+_10% — Object/array handling_, including accessing and updating
+_25% — Management of asynchronous code_ through the use of promises and async/await
+_20% — Creativity and innovation_, including enhancements that improve the product even further
+_30% — Overall code completeness and effectiveness_, as shown by meeting the basic requirements as outlined below
+
 ### Getting Started
 Follow the instructions under [Getting Started](#getting-started--1x-repo-configuration) to clone this repository and set up a dev branch.
 
@@ -121,9 +130,9 @@ takeOrder()
 ```
 6. At the end of your promise chain, include a `finally()` statement that calls the `resetUI()` function so that the system is ready to take the next order.
 7. Improve your code by using async/await. _NOTE: This will be discussed on Wednesday._ 
-8. Follow the instructions below for [Submitting Your Code via GitHub](#submitting-your-code-via-github).
 
-Upon submittal, the instructor will do the following: 
+### Submitting Your Code
+Follow the instructions below for [Submitting Your Code via GitHub](#submitting-your-code-via-github). Upon submittal, the instructor will do the following: 
 - Review your code and make any comments on your pull request
 - Merge the accepted code into the "main" branch of the remote repo on GitHub
 - Close the pull request 
