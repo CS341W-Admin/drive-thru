@@ -1,6 +1,6 @@
 # 🐔 McCluckel's Drive-Thru
 ## Project Overview
-The owners of the McCluckel's Chicken Sandwich Shop want to offer drive-thru window service. They've hired you to develop a workflow system that automates the process of taking an order, accepting payment, updating inventory, cooking the food, and serving the meal to the customer. Some parts of this solution have been built, but you need to supply missing elements and tie it all together in a working program. 
+The owners of the McCluckel's Chicken Sandwich Shop want to offer drive-thru window service. They've hired you to develop a workflow system that drives the process of taking an order, accepting payment, updating inventory, cooking the food, and serving the meal to the customer. Some parts of this solution have been built, but you need to supply missing elements and tie it all together in a working program. 
 
 ### Getting Started
 Follow the instructions under [Getting Started](#getting-started--1x-repo-configuration) to clone this repository and set up a dev branch.
