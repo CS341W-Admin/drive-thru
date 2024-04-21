@@ -3,7 +3,7 @@
 The owners of the McCluckel's Chicken Sandwich Shop want to offer drive-thru window service. They've hired you to develop a workflow system that drives the process of taking an order, accepting payment, updating inventory, cooking the food, and serving the meal to the customer. Some parts of this solution have been built, but you need to supply missing elements and tie it all together in a working program. 
 
 ### Project Scoring
-This project is worth 15 points, weighted as follows:
+This project is worth 50 points, weighted as follows:
 - __10% — Adherence to Git/GitHub procedures__, including dev branching and pull request submission
 - __10% — Setup of HTML page__, including proper boilerplate elements and linking of stylesheet and main JS file
 - __40% — JavaScript code__, including proper use of ES6 modules, event handling, promises, object handling, and scope management
@@ -26,7 +26,7 @@ Follow the instructions under [Getting Started](#getting-started--1x-repo-config
    2. Failure: "Sorry" notice (e.g., "Sorry! We could not complete your order").
 
 ### 2. Payment System
-1. Full payment must be received from the customer prior to submitting the order to the kitchen. 
+1. Full payment must be received from the customer before submitting the order to the kitchen. 
 2. Underpayment will result in a canceled order and a refund.
 3. Overpayments get tracked as tips for employees. McCluckels does not give change. 
 3. If a payment is successful but the order cannot be fulfilled for any reason, then the order will be canceled. The funds __do not__ get counted as receipts.
@@ -94,14 +94,14 @@ _REMINDER: A promise-based function will always return a `new Promise`._
    1. Exception: This is not required for the kitchen order promise, which already has a `fetch()` API call that is asynchronous.
 3. Use the `fetch` API to submit your order to the kitchen. Your request will go to an external URL as shown below:  
 ```
-    fetch("https://1ouruk-8080.csb.app/prepare_meal", {
+    fetch("https://yylsnf-8080.csb.app/prepare_meal", {
       method: "POST",
       body: JSON.stringify(order),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
     })
-      .then((data) => data.json()) //.json() is a promise
+      .then((data) => data.json()) // Note: .json() is a promise
       .then((data) => {
         data.status === 1 ? resolve(data) : reject(data)
       })
@@ -137,17 +137,15 @@ Follow the instructions below for [Submitting Your Code via GitHub](#submitting-
 - Close the pull request 
 
 ### Additional Advice / ChatGPT
-You have a great deal of flexibility with how you fulfill the requirements of this assignment. Your instructor will provide guidance along the way, and you can and should use the Slack channel for Q&A. 
-
-You are permitted to use ChatGPT to help complete this assignment. However, if you use this AI tool, then you must also submit a 250-word essay — **in your own words** — to describe how you used it, what the results were, and whether you found it helpful to your learning experience.
+You have a great deal of flexibility with how you fulfill the requirements of this assignment. Your instructor will provide guidance along the way, and you can and should use the Slack channel for Q&A. You are permitted to use GitHub CoPilot, ChatGPT, Gemini, and other generative AI to help complete this assignment. However, you are responsible for the code you implement, so review it to make sure you understand it, and also that it works correctly.
 
 ## Getting Started — One-Time Repo Configuration
 
-   *NOTE: To execute these steps, you can use the terminal window in VSCode, the standard terminal app (Mac) or command prompt (Windows), or a popular third-party terminal emulator (e.g., iTerm2 for Mac, PuTTy or PowerShell for Windows).*
+   *NOTE: You can use the terminal window in VSCode, the standard terminal app (Mac) or command prompt (Windows), or a popular third-party terminal emulator (e.g., iTerm2 for Mac, PuTTy or PowerShell for Windows).*
 
 1. Make sure you have Git installed on your local machine. You can check by typing this command in the terminal window:
     ```
-    git status
+    git -v
     ```
 2. If the git command is not recognized, then download and install Git for your respective operating system (Mac, Windows, etc.):
     [link to Git download page](https://git-scm.com/downloads)
@@ -179,7 +177,7 @@ You are permitted to use ChatGPT to help complete this assignment. However, if y
     git branch
     git checkout dev-drivethru
     ```
-2. Make sure any new files have been added to the local repo. Use `git add`... to add files/folders selectively, or use the global command (trailing dot):
+2. Make sure that any new files have been added to the local repo. Use `git add`... to add files/folders selectively, or use the global command (trailing dot):
    ```
    git add .
    ```
