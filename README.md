@@ -37,29 +37,29 @@ Follow the instructions under [Getting Started](#getting-started--one-time-repo-
 A successful order will have the following sequence:
 1. Take order
 2. Accept payment
-3. Update inventory _Note: This is tracked at a product name level, not at element level (e.g., buns, patties)_
+3. Update inventory _Note: This is tracked only by product name (e.g., Spicy Chicken Sandwich). We do not track ingredients (e.g., buns, patties) in this project._
 4. Submit order to kitchen and receive food
 5. Serve meal and thank customer
 
 ## Technical Requirements
 ### 1. User Interface
 1. Use an HTML form to gather the order details (sandwich types and quantity of each), along with a "submit" button. 
-2. Use an HTML form to gather payment amount (input field) along with a "pay" button. 
+2. Use an HTML form to gather the payment amount (input field) along with a "pay" button. 
 3. Use an event handler on each button: 
    1. Suppress the default form submit button behavior.
 4. Gather the order form's field values into the `orderDetails` object.
 5. Provide HTML tags with unique id attributes so that you can target them with CSS (e.g., hide/show) and target them with content (e.g., `innerHTML` or `textContent`. 
    1. Messages — Where messages to the customer can be seen
-   2. Order status — Where the details of the current order are displayed
-   3. Order history — Where you can track orders that have been fulfilled
-   4. Current sales totals (admin area in footer) — Where you can see incoming receipts/revenue by sandwich type
-   5. Inventory levels (sandwiches remaining) — Where you can see how many sandwiches remain in inventory
+   2. Order status — This is where the details of the current order are displayed
+   3. Order history — This is where you can track orders that have been fulfilled
+   4. Current sales totals (admin area in footer) — This is where you can see incoming receipts/revenue by sandwich type
+   5. Inventory levels (sandwiches remaining) — This is where you can see how many sandwiches remain in inventory
 
 ### 2. Payment System
 1. The price of each sandwich will be stored within the `accounts` JS object. 
 2. Your program will dynamically consult the `accounts` object when determining how much money to require for payment. 
 3. If an order is __fulfilled__, then the dollar amount is added to "receipts" counter.
-4. If an order is __rejected__, then dollar amount __is not__ added to the "receipts" counter. _NOTE: Any sandwich ordered beyond supply levels will be rejected._
+4. If an order is __rejected__, then the dollar amount __is not__ added to the "receipts" counter. _NOTE: Any sandwich ordered beyond supply levels will be rejected._
 5. Use DOM handling techniques (e.g., `querySelector()`) to push to the footer your updated totals on sales figures by sandwich type. This will be the sum (dollar format with two decimals) of all orders taken for the day/session. For example,
    1. Regular Chicken Sandwich: $120.00
    2. Spicy Chicken Sandwich: $52.45
@@ -68,7 +68,7 @@ A successful order will have the following sequence:
 ### 3. Process Steps
 _NOTE: Promises will be central to your asynchronous program. Each step will exist as a unique "promise" object, for example:_
 ```
-// Asynchronous promise event with 3 second timeout
+// Here's an asynchronous promise event with 3 second timeout
 function doSomething(orderNum){
   return new Promise((resolve, reject) => {
     if(orderNum){
@@ -87,11 +87,11 @@ _REMINDER: A promise-based function will always return a `new Promise`._
 1. Make sure a Promise exists for each step in your flow:
    1. Take order
    2. Accept payment
-   3. Update inventory — This is tracked at a product name level (e.g., "regular," "spicy"), not at an ingredient level (e.g., buns, patties)
+   3. Update inventory — Note that inventory is tracked at a product name level (e.g., "regular," "spicy"), not at an ingredient level (e.g., buns, patties)
    4. Submit kitchen order and receive food — This will involve a `fetch()` call to an external API that returns the food [image URLs])
    5. Serve meal and thank customer
 2. Give each promise a `setTimeout()` delay to simulate the time it takes to fulfill an order and to give the promise the quality of being an asynchronous event.
-   1. Exception: This is not required for the kitchen order promise, which already has a `fetch()` API call that is asynchronous.
+   1. Exception: Using `setTimeout()` is NOT required for the kitchen order promise, for it already has a `fetch()` API call that is asynchronous.
 3. Use the `fetch` API to submit your order to the kitchen. Your request will go to an external URL as shown below:  
 ```
     fetch("https://yylsnf-8080.csb.app/prepare_meal", {
@@ -121,8 +121,10 @@ takeOrder()
   .then((data) => {
     updateInventory(data)
   })
+
   /* And so on...
   ...with more promises. */
+
    .catch((err) => {
      catchHandler(err)
    })
@@ -137,7 +139,7 @@ Follow the instructions below for [Submitting Your Code via GitHub](#submitting-
 - Close the pull request 
 
 ### Additional Advice / ChatGPT
-You have a great deal of flexibility with how you fulfill the requirements of this assignment. Your instructor will provide guidance along the way, and you can and should use the Slack channel for Q&A. You are permitted to use GitHub CoPilot, ChatGPT, Gemini, and other generative AI to help complete this assignment. However, you are responsible for the code you implement, so review it to make sure you understand it, and also that it works correctly.
+You have a great deal of flexibility in how you fulfill the requirements of this assignment. Your instructor will provide guidance along the way, and you can and should use the Slack channel for Q&A. You may use GitHub CoPilot, ChatGPT, Gemini, and other generative AI to help complete this assignment. However, you are responsible for the code you implement, so review it for understanding and test it for effectiveness.
 
 ## Getting Started — One-Time Repo Configuration
 
