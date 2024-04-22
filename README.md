@@ -11,7 +11,7 @@ This project is worth 50 points, weighted as follows:
 - __15% — Creativity and innovation__, including your custom enhancements that improve the product beyond the requirements
 
 ### Getting Started
-Follow the instructions under [Getting Started](#getting-started--1x-repo-configuration) to clone this repository and set up a dev branch.
+Follow the instructions under [Getting Started](#getting-started--one-time-repo-configuration) to clone this repository and set up a dev branch.
 
 ## Business Requirements
 ### 1. User Interface
