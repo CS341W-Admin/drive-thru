@@ -35,7 +35,7 @@ const accounts = {
       let price = this[item.itemname].unitPrice
       total += price * item.count
     }
-    return total.toFixed(2)
+    return total
   },
 }
 
