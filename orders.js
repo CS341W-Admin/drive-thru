@@ -26,7 +26,7 @@ const accounts = {
     for (let item of Object.values(orderObj.items)) {
       let price = this[item.itemname].unitPrice
       let total = price * item.count
-      this[item.itemname].receipts += total.toFixed(2)
+      this[item.itemname].receipts += total
     }
   },
   getCosts(orderObj) {
