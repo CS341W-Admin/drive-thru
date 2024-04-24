@@ -49,7 +49,7 @@ function getPayment(order) {
     }, 2000)
     payForm.addEventListener("submit", (event) => {
       event.preventDefault()
-      const tendered = event.target.querySelector("#USD").value
+      const tendered = Number(event.target.querySelector("#USD").value)
       if (tendered >= due) {
         replaceClass("#payForm", "hide")
         resolve(order)
