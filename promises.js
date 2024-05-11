@@ -48,6 +48,7 @@ function getPayment(order) {
       replaceClass("#payForm", "show")
     }, 2000)
     payForm.addEventListener("submit", (event) => {
+      // WARNING: Adding an event listener within a function is problematic because a new listener is added every time
       event.preventDefault()
       const tendered = Number(event.target.querySelector("#USD").value)
       if (tendered >= due) {
